@@ -8,7 +8,9 @@ import { State } from '../interfaces';
 export const ListView = () => {
 	const [state, SetState] = useState<State>(State.All);
 
-	const { issuesQuery } = useIssues();
+	const { issuesQuery } = useIssues({
+		state: state
+	});
 
 	const issues = issuesQuery.data ?? [];
 
