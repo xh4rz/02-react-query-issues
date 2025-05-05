@@ -10,7 +10,7 @@ export const ListView = () => {
 
 	const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
 
-	const { issuesQuery } = useIssues({
+	const { issuesQuery, page, nextPage, prevPage } = useIssues({
 		state: state,
 		selectedLabels: selectedLabels
 	});
@@ -35,13 +35,19 @@ export const ListView = () => {
 						<IssueList issues={issues} onStateChange={SetState} state={state} />
 
 						<div className="flex justify-between items-center">
-							<button className="p-2 bg-blue-500 rounded-md hover:bg-blue-700 transition-all">
+							<button
+								className="p-2 bg-blue-500 rounded-md hover:bg-blue-700 transition-all"
+								onClick={prevPage}
+							>
 								Anteriores
 							</button>
 
-							<span>{1}</span>
+							<span>{page}</span>
 
-							<button className="p-2 bg-blue-500 rounded-md hover:bg-blue-700 transition-all">
+							<button
+								className="p-2 bg-blue-500 rounded-md hover:bg-blue-700 transition-all"
+								onClick={nextPage}
+							>
 								Siguientes
 							</button>
 						</div>
